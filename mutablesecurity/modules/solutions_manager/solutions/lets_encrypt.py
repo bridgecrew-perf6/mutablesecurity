@@ -232,7 +232,7 @@ class LetsEncrypt(AbstractSolution):
             state=state,
             host=host,
             sudo=True,
-            name="Updates the apt reporisoties",
+            name="Updates the apt repositories",
             env={"LC_TIME": "en_US.UTF-8"},
             cache_time=3600,
             success_exit_codes=[0, 100],

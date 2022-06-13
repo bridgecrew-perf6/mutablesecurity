@@ -12,3 +12,7 @@ class MandatoryAspectLeftUnsetException(MutableSecurityException):
 
 class SameSetConfigurationValue(MutableSecurityException):
     """The value set in the configuration is the same with the old one."""
+
+
+class OperationNotSupported(MutableSecurityException):
+    """The operation is not supported at the moment."""

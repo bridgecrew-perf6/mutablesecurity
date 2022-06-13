@@ -123,6 +123,11 @@ def _print_module_help(ctx, solution):
             possible_values = ", ".join([value.name for value in details["type"]])
             required_type = "str"
 
+        if read_only := details.get("read_only", False):
+            required_type += ", read-only"
+        elif not details["default"]:
+            required_type += ", mandatory"
+
         table.add_row(key, required_type, possible_values, details["help"])
 
     # Create the text

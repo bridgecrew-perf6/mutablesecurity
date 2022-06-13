@@ -22,7 +22,7 @@ class ManagedYAMLBackedConfig:
         configuration_meta = solution_class.meta["configuration"]
         for key, _ in configuration_meta.items():
             # Check the default aspects to be set
-            if not solution_class._configuration[key]:
+            if solution_class._configuration[key] is None:
                 raise MandatoryAspectLeftUnsetException()
 
         return True
@@ -63,11 +63,12 @@ class ManagedYAMLBackedConfig:
                         continue
 
                     # Convert to the real type
-                    real_type = value["type"]
-                    try:
-                        config[key] = real_type(config[key])
-                    except:
-                        config[key] = real_type[config[key]]
+                    if config[key] is not None:
+                        real_type = value["type"]
+                        try:
+                            config[key] = real_type(config[key])
+                        except:
+                            config[key] = real_type[config[key]]
 
                 return config
 
